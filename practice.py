@@ -97,7 +97,6 @@ class Room:
     #которое останется впоследствии
     def put_cargo(self, cargo, i):
         cur_space = self.free_spaces[i]
-        print('putting cargo ', cur_space.pos, cargo.a, cargo.b, cargo.c)
         cur_space = Space(cur_space.a, cur_space.b, cur_space.c, cur_space.get_pos())
         self.free_spaces.pop(i)
     
@@ -123,8 +122,6 @@ class Room:
         #В массив свободного места запишется два разных элемента
         #В связи с чем пришлось описывать костыль, пересчитывающий все элементы одной высоты после каждой новой установки груза
         self.recalculate_free_spaces()
-        for q in range(len(self.free_spaces)):
-            print(q, ": ", self.free_spaces[q].pos, self.free_spaces[q].a, self.free_spaces[q].b, self.free_spaces[q].c)
         self.count += 1
 
 
