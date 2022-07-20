@@ -88,7 +88,7 @@ class CargoGroup:
 class Room:
     def __init__(self, json_obj):
         size = json_obj["size"]
-        self.free_spaces = [Space(size[0], size[1], size[2])]
+        self.free_spaces = [Space(size[0], size[2], size[1])]
         self.count = -1
 
     #Кладёт груз в свободное пространство
