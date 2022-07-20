@@ -97,6 +97,7 @@ class Room:
     #которое останется впоследствии
     def put_cargo(self, cargo, i):
         cur_space = self.free_spaces[i]
+        print('putting cargo ', cur_space.pos, cargo.a, cargo.b, cargo.c)
         cur_space = Space(cur_space.a, cur_space.b, cur_space.c, cur_space.get_pos())
         self.free_spaces.pop(i)
     
@@ -122,6 +123,8 @@ class Room:
         #В массив свободного места запишется два разных элемента
         #В связи с чем пришлось описывать костыль, пересчитывающий все элементы одной высоты после каждой новой установки груза
         self.recalculate_free_spaces()
+        for q in range(len(self.free_spaces)):
+            print(q, ": ", self.free_spaces[q].pos, self.free_spaces[q].a, self.free_spaces[q].b, self.free_spaces[q].c)
         self.count += 1
 
 
@@ -243,10 +246,13 @@ def get_pos(size, pos):
 # и начинается работа непосредственно с данными                     *
 #********************************************************************
 
-print('Укажите полное имя файла(с указанием пути к нему)')
-full_dir = input()
+print('Укажите имя файла (путь к нему можно настроить в settings.py')
+source_path="C:/jsons/0/"
+result_path="C:/jsons/0/"
+name = input()
+source_path = source_path  + name
 
-with open(full_dir) as loaded_file:
+with open(source_path) as loaded_file:
     data = json.load(loaded_file)
 
 
@@ -324,7 +330,7 @@ for group in groups:
         result['unpacked'].append(cur_res)
         group.count -= 1
 
-res_dir = full_dir[:-5] + "result.json"
+result_path = result_path + name[:-5] + "_result.json"
 with open(res_dir, 'w') as outfile:
     json.dump(result, outfile)
 
